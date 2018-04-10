@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./reset.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="./panel.css">
+    <link rel="stylesheet" href="./header.css">
+    <link rel="stylesheet" href="./reset.css">
+    <title>Welcome</title>
+</head>
+
+<body>
+    <header>
+        <section class="welcome-header d-flex ml-3">
+            <h1 class="welcome-user col-7 p-0">
+                Welcome
+                <span class="logged-in-username"> XYZ</span>
+            </h1>
+            <nav class="header-nav d-flex col-5 p-0">
+                <a href="#" class="view-profile">View Profile</a>
+                <a href="#" class="logout">Logout</a>
+            </nav>
+        </section>
+        <section class="page-nav-header ml-1 mt-2">
+            <nav>
+                <a href="#" class="home-link page-nav-layout pl-3">Home</a>
+                <i class="fa fa-angle-right d-none"></i>
+                <a href="#" class="dashboard-link page-nav-layout d-none"></a>
+                <i class="fa fa-angle-right d-none"></i>
+                <a href="#" class="details-link page-nav-layout d-none"></a>
+            </nav>
+        </section>
+    </header>
+    <main class="container">
+        <article class="container-fluid">
+            <section class="row detail-status">
+                <p class="col-4 font-weight-bold">Nominee Name</p>
+                <p class="col-8">Deepika Rathore</p>
+            </section>
+            <section class="row detail-status">
+                <p class="col-4 font-weight-bold">Assessment Status</p>
+                <p class="col-8">In Progress</p>
+            </section>
+
+            <section class="row detail-status">
+                <p class="col-4 font-weight-bold">Nominated By</p>
+                <p class="col-8">Self</p>
+            </section>
+            <section class="panel-group">
+                <section class="row detail-status">
+                    <p class="col-4 font-weight-bold">Shadow</p>
+                    <p class="col-6">Completed</p>
+                    <a class="col-2 collapse-button" role="button" data-toggle="collapse" href="#shadow-details">
+                        <i class="more-less fas fa-plus"></i>
+                    </a>
+
+                </section>
+                <section id="shadow-details" class="collapse-details collapse">
+                        <header class="col-12 d-inline">
+                            <form action="" id="shadow-form">
+                                <span class="col-4 font-weight-bold">No. of Reverse Shadow Required </span>
+                                <select class="col-2 custom-select" name="shadow-count" id="shadow-count">
+                                    <option selected hidden>--Select--</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </form>
+                        </header>
+                        
+                    </section>
+
+                <section class="row detail-status">
+                    <p class="col-4 font-weight-bold">Reverse Shadow</p>
+                    <p class="col-6">In Progress</p>
+                    <a class="col-2 collapse-button" href="#reverse-shadow-details" data-toggle="collapse" data-parent="#accordion" aria-expanded="false"
+                        aria-controls="reverse-shadow-details">
+                        <i class="more-less fas fa-plus"></i>
+                    </a>
+                </section>
+                <section id="reverse-shadow-details" class="collapse-details collapse">
+                    <header class="col-12 d-inline">
+                        <form action="" id="reverse-shadow-form">
+                            <span class="col-4 font-weight-bold">No. of Reverse Shadow Required </span>
+                            <select class="col-2 custom-select" name="reverse-shadow-count" id="reverse-shadow-count">
+                                <option selected hidden>--Select--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </form>
+                    </header>
+                    
+                </section>
+            </section>
+            <section class="row float-right">
+                <button type="reset" class="btn btn-primary">Reset</button>
+                <button class="btn btn-primary">Save</button>
+            </section>
+            </article>
+
+            <article class="col-12 shadow-details-brief">
+                <section class="col-4">
+                    <form action="" class="shadow-supervisor-form">
+                        <section>
+                            <label for="" class="font-weight-bold">Assigned to</label>
+                            <select class="m-left custom-select"  name="assignee-list">
+                                <option selected hidden>--Select--</option>
+                                <option value="a">a</option>
+                                <option value="b">b</option>
+                                <option value="c">c</option>
+                            </select>
+                        </section>
+                    </form>
+                </section>
+                <section class="col-4">
+                        <section>
+                            <span class="font-weight-bold">Status</span>
+                            <span class="m-left">Not Started</span>
+                        </section>
+                </section>
+                <section class="col-4">
+                        <section>
+                            <span class="font-weight-bold">Date Completed</span>
+                            <span class="m-left"></span>
+                        </section>
+                </section>
+            </article>
+    </main>
+    
+    <script src="./panel.js"></script>
+</body>
+
+</html>

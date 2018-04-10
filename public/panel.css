@@ -1,0 +1,45 @@
+.detail-status{
+    margin: 4px 0;
+    background-color:#e5eff7;
+    padding: 7px 0;
+}
+.detail-status p {
+    margin: 0;
+}
+.container{
+    margin-top: 40px;
+}
+.collapse-details {
+    background-color: #f4f8fb;
+    padding: 10px;
+}
+.more-less {
+    float: right;
+    color: #212121;
+}
+.form-button {
+    background-color: #007bff;
+}
+
+.btn-primary{
+background-color: #007bff;
+margin: 8px;
+border-radius: 0;
+padding-bottom:0;
+padding-top:0; 
+}
+.btn-primary:hover{
+background-color: #0260c5;
+}
+.shadow-details-brief {
+    border: 2px solid #fff;
+    margin: 10px 0;
+    padding: 20px;
+    display: none;
+}
+.m-left{
+    margin-left: 20px;   
+}
+.custom-select{
+width:50%;
+}
