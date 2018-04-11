@@ -1,0 +1,30 @@
+{
+    "Panelists": [
+        {
+            "Panelist_Name": "Anthrax Gitters",
+            "_id":123321,
+            "Assessment_Status": "Not Started",
+            "State_Number":0,
+            "Nominated_By": "",
+            "Shadows": 0,
+            "Shadow_Details": [],
+            "Shadow_Status":"",
+            "Rev_Shadows": 0,
+            "Rev_Shadow_Details": [],
+            "Rev_Shadow_Status":""
+        },
+        {
+            "Panelist_Name": "Gimmer Shiplon",
+            "_id":123325,
+            "Assessment_Status": "Pending Supervisor Approval",
+            "State_Number":1,
+            "Nominated_By": "Self",
+            "Shadows": 0,
+            "Shadow_Details": [],
+            "Shadow_Status":"",
+            "Rev_Shadows": 0,
+            "Rev_Shadow_Details": [],
+            "Rev_Shadow_Status":""
+        }   
+    ]
+}
