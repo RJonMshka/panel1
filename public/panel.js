@@ -4,32 +4,63 @@ $(function(){
         $(e.currentTarget).find('.more-less').toggleClass("fa-plus fa-minus");
     });
 
-    let render = function (count , $container , className , event ) {
-        
-        $(`.${className}`).remove();
+    let renderAdd = function (itemIndex , $container , $clonedContainer , className) {
+        let $tempContainer = $clonedContainer.clone();
 
-        for (let i = 0 ; i < count ; i++) {
+        $tempContainer.removeClass('original-item').addClass('d-inline-flex');
 
-            let $tempContainer = $container.clone();
-
-            $tempContainer.addClass(className);
-
-            $(event.currentTarget).closest('header').after($tempContainer);
-
+        if(itemIndex === 0) {
+            $container.find('header').after($tempContainer);
         }
-
-        $container.remove();
+        else {
+            $container.find(`.${className}`).last().after($tempContainer);
+        }
 
     }
 
-    $('#reverse-shadow-count').on('change',function(e){
-        $('.shadow-details-brief').eq(0).removeClass('cloned-rs-containers').removeClass('cloned-s-containers').addClass('d-inline-flex');
-        render( $(this).val() , $('.shadow-details-brief').eq(0) , 'cloned-rs-containers' , e );
+    let renderRemove = function (itemIndex , $container , className) {
+        $container.find(`.${className}`).last().remove();
+    }
+
+    class Render{
+        constructor($container , $clonedContainer  , className){
+            this.$container = $container;
+            this.$clonedContainer = $clonedContainer;
+            this.className = className;
+            this.oldCount = 0;
+            this.newCount;
+        }
+
+        addRemoveComponents(newCount){
+            this.newCount = newCount;
+            if(this.oldCount < this.newCount) {
+                for(let i = this.oldCount ; i < this.newCount ; i++) {
+
+                    renderAdd(i , this.$container , this.$clonedContainer , this.className);
+
+                }
+            }
+            else if (this.newCount < this.oldCount) {
+                for (let i = this.oldCount ; i> this.newCount ; i--) {
+
+                    renderRemove(i , this.$container , this.className);
+
+                }
+            }
+            this.oldCount = this.newCount;
+        }
+
+    }
+
+    let ShadowRender = new Render($('#shadow-details') , $('.original-item') , 'shadow-details-brief');
+    let ReverseShadowRender = new Render($('#reverse-shadow-details') , $('.original-item') , 'shadow-details-brief');
+
+    $('#shadow-count').on('change', function () {
+        ShadowRender.addRemoveComponents($(this).val());
     });
 
-    $('#shadow-count').on('change',function(e){
-        $('.shadow-details-brief').eq(0).removeClass('cloned-s-containers').removeClass('cloned-s-containers').addClass('d-inline-flex');
-        render( $(this).val() , $('.shadow-details-brief').eq(0) , 'cloned-s-containers' , e );
+    $('#reverse-shadow-count').on('change' , function () {
+        ReverseShadowRender.addRemoveComponents($(this).val());
     });
 
 });
