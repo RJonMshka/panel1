@@ -1,0 +1,21 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    addSlots: [ 
+        {
+            startTime: "10:30 AM",
+            endTime: "11:30 AM"
+        },
+        {
+            startTime: "12:30 PM",
+            endTime: "1:30 PM"
+        }
+    ], //details of slots to be added
+    deleteSlots: [3, 4] // slotIds of slots to be deleted
+}
+
+RESPONSE - 
+{
+    success: "yes"
+}

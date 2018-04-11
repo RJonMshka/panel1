@@ -1,0 +1,12 @@
+REQUEST - 
+{
+    username: "",
+    password: ""
+}
+
+RESPONSE - 
+{
+    username: "",
+    tokenId: "",
+    roles: ['Hiring','Supervisor','Superuser']
+}

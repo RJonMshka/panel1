@@ -1,0 +1,53 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    shadow: {
+        status: "",
+        numRequired: 3,
+        details: [
+            {
+                assignedTo: "",
+                status: "",
+                dateCompleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCompleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCompleted: ""
+            },
+        ]
+    },
+    reverseShadow: {
+        status: "",
+        numRequired: 3,
+        details: [
+            {
+                assignedTo: "",
+                status: "",
+                dateCompleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCompleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCompleted: ""
+            },
+        ]
+    },
+
+}
+
+RESPONSE (if self, supervisor) - 
+{
+    status: "success"
+}

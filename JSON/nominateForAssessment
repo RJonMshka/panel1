@@ -1,0 +1,10 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: ""
+}
+
+RESPONSE - 
+{
+    success: "yes"
+}

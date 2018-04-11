@@ -1,0 +1,13 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    nomineeDetails: {
+        id: ""
+    }
+}
+
+RESPONSE - 
+{
+    success: "yes"
+}

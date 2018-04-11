@@ -1,0 +1,27 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    date: "dd/mm/yyyy",
+    role: []
+}
+
+RESPONSE - 
+{
+    listOfSlots: [
+        {
+            slotId: 1,
+            description: "9:00 AM ­ 9:30 AM",
+            empty: "yes",
+            emailAddress: "deeratho@publicisgroupe.net", // this field would come in response only if role is Hiring
+            candidateInfo: "yes"
+        },
+        {
+            slotId: 2,
+            description: "11:30 AM ­ 12:30 PM",
+            empty: "no",
+            emailAddress: null,
+            candidateInfo: "no"
+        }
+    ]
+}

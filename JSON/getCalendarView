@@ -1,0 +1,17 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    month: "04",
+    year: "2018"
+}
+
+RESPONSE - 
+{
+    monthDetail: {
+            noSlots: [10, 11, 12, 13, 14, 16, 17, 23, 24, 28, 30], // represented by empty cells
+            allAvailable: [19, 20, 25, 29], // represented by green color
+            fewAvailable: [15, 22, 26], // represented by amber color
+            allFull: [18] // represented by red color
+    }
+}

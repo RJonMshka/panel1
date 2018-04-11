@@ -1,0 +1,16 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    slotId: 3
+}
+
+RESPONSE - 
+{
+    candidateInfo {
+        name: "",
+        email: "",
+        phone: "",
+        codility: ""
+    }
+}

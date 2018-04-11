@@ -1,0 +1,37 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    roles: []
+}
+
+RESPONSE - 
+{
+    startPageNo: 1,
+    endPageNo: 1,
+    recordsPerPage: 10,
+    totalRecords: 25,   
+    nomineeList: [
+        {
+            id: "",
+            name: "",
+            nominatedBy: "",
+            status: "",
+
+        },
+        {
+            id: "",
+            name: "",
+            nominatedBy: "",
+            status: "",
+            
+        },
+        {
+            id: "",
+            name: "",
+            nominatedBy: "",
+            status: "",
+            
+        }
+    ]
+}

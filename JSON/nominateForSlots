@@ -1,0 +1,11 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: "",
+    listOfSlots: [1, 3, 4] // list of slot Ids
+}
+
+RESPONSE - 
+{
+    success: "yes"
+}
