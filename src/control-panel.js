@@ -1,71 +1,99 @@
+
 import { Dispatcher, Store } from './flux';
 
 const controlPanelDispatcher = new Dispatcher();
 
-export const UPDATE_USERNAME = `UPDATE_USERNAME`;
-export const UPDATE_FONT_SIZE_PREFERENCE = `UPDATE_FONT_SIZE_PREFERENCE`;
+export const NOMINATE_SELF = `NOMINATE_SELF`;
 
-const userNameUpdateAction = (name)=>{
+const nominateSelfAction = (data)=>{
     return {
-        type: UPDATE_USERNAME,
-        value: name
+        "value":data,
+        "type":NOMINATE_SELF
     }
-};
+}
 
-const fontSizePreferenceUpdateAction = (size)=>{
-    return {
-        type: UPDATE_FONT_SIZE_PREFERENCE,
-        value: size
-    }
-};
+$(function(){
 
-document.forms.fontSizeForm.fontSize.forEach(element=>{
-    element.addEventListener("change",({target})=>{
-        controlPanelDispatcher.dispatch(fontSizePreferenceUpdateAction(target.value));
-    })
-});
+    class PanelistStore extends Store {
+        getInitialState(cb) {
+            $.ajax({
+                url:"http://localhost:3003/panelists",
+                method:'get',
+                contentType:"application/json",
+                success: (res)=> {
+                    this.__state = res;
+                    cb(this.__state);
+                }
+            });
 
-document.getElementById(`userNameInput`).addEventListener("input",({target})=>{
-    const name = target.value;
-    controlPanelDispatcher.dispatch(userNameUpdateAction(name));
-});
+        }
 
-class UserPrefsStore extends Store {
-    getInitialState() {
-        return localStorage[`preferences`] ? JSON.parse(localStorage[`preferences`]) : {
-            userName: "Jim",
-            fontSize: "small"
-        };
-    }
-    __onDispatch(action){
-        switch(action.type) {
-            case UPDATE_USERNAME:
-                this.__state.userName = action.value;
-                this.__emitChange();
-                break;
-            case UPDATE_FONT_SIZE_PREFERENCE:
-                this.__state.fontSize = action.value;
-                this.__emitChange();
-                break;
+        __onDispatch(action){
+            switch(action.type) {
+                case NOMINATE_SELF:
+                    this.__state = action.value;
+                    $.ajax({
+                        url: 'http://localhost:3003/panelists',
+                        method:'put',
+                        contentType:'application/json',
+                        data: JSON.stringify(this.__state),
+                        success: (res) => {
+                            console.log('res is: '+res);
+                            this.__emitChange();
+                        }
+                    });
+
+                    break;
+            }
         }
     }
-    getUserPreferences(){
-        return this.__state;
+    
+    const panelistStore = new PanelistStore(controlPanelDispatcher);
+    
+    const render = (object)=>{
+
+        $('.collapse-button').on('click',function(e){
+            $(e.currentTarget).find('.more-less').toggleClass("fa-plus fa-minus");
+        });
+
+        $('.logged-in-username').html(object.name.split(' ')[0]);
+        $('.assessment-status').html(object.status);
+        $('.nominated-by').html(object.nominatedBy);
+        $('.nominate-btn').hide();
+        $('.shadow-status').html(object.shadow.status);
+        $('.reverse-shadow-status').html(object.reverseShadow.status);
+
+        if(object.state == 0) {
+            
+            $('.detail-status').css('opacity',0.6);
+            $('.collapse-button').hide();
+            $('.nominate-btn').show();
+        }
+
+        $('.nominate-btn').on('click',() => {
+
+            // Code for Email to Supervisor Will be here
+            let newObject = object;
+            newObject.state = 1;
+            newObject.status = 'Pending Supervisor Approval';
+            newObject.nominatedBy = 'Self';
+            
+            controlPanelDispatcher.dispatch(nominateSelfAction(newObject));
+
+            $('#myModal').modal('show');
+        });
+
     }
-}
+    panelistStore.addListener((state)=>{
+        console.log('render is performed');
+    
+        // Re-render
+        render(state);
+    });
 
-const userPrefsStore = new UserPrefsStore(controlPanelDispatcher);
+    panelistStore.getInitialState((data)=>{render(data)});
 
-userPrefsStore.addListener((state)=>{
-    console.info(`Updated Store`,state);
-    render(state);
-    localStorage[`preferences`] = JSON.stringify(state);
 });
 
-const render = ({userName,fontSize})=>{
-    document.getElementById("userName").innerText = userName;
-    document.getElementsByClassName("container")[0].style.fontSize = fontSize === "small" ? "16px" : "24px";
-    document.forms.fontSizeForm.fontSize.value = fontSize;
-}
 
-render(userPrefsStore.getUserPreferences());
+
