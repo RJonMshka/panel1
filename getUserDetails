@@ -1,0 +1,54 @@
+REQUEST - 
+{
+    username: "",
+    tokenId: ""
+}
+
+RESPONSE (if self, supervisor) - 
+{
+    name: "",  // this field would come in response only for supervisor
+    status: "",
+    nominatedBy: "",
+    shadow: {
+        status: "",
+        numRequired: 3,
+        details: [
+            {
+                assignedTo: "",
+                status: "",
+                dateCmopleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCmopleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCmopleted: ""
+            },
+        ]
+    },
+    reverseShadow: {
+        status: "",
+        numRequired: 3,
+        details: [
+            {
+                assignedTo: "",
+                status: "",
+                dateCmopleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCmopleted: ""
+            },
+            {
+                assignedTo: "",
+                status: "",
+                dateCmopleted: ""
+            },
+        ]
+    },
+}

@@ -43,3 +43,48 @@ background-color: #0260c5;
 .custom-select{
 width:50%;
 }
+
+.opacity {
+    opacity: 0.6;
+}
+
+
+/* css of modal */
+
+.modal-content{
+    background-color:#edeff0;
+}
+.modal-header{
+    border-radius: 0rem;
+    border:2px solid grey;
+    background-color:#dce4eb;
+}
+.modal-body{
+    border:2px solid grey;
+    border-top:none;
+    border-bottom:none;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.modal-body p{
+    margin-left:15px;
+    margin-top:15px;
+    font-size: 0.9em;
+}
+#myModal footer{
+    border:2px solid grey;
+    border-top: none;
+    padding-top:0px;
+}
+.modal-ok-btn{
+    border:2px solid grey;
+    background: #ced1d4;
+    width: 115px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+.info-btn{
+    border:2px solid grey;
+    border-radius:50%;
+    width:80px;
+}

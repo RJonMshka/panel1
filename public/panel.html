@@ -24,7 +24,7 @@
         <section class="welcome-header d-flex ml-3">
             <h1 class="welcome-user col-7 p-0">
                 Welcome
-                <span class="logged-in-username"> XYZ</span>
+                <span class="logged-in-username"></span>
             </h1>
             <nav class="header-nav d-flex col-5 p-0">
                 <a href="#" class="view-profile">View Profile</a>
@@ -44,46 +44,34 @@
     <main class="container">
         <article class="container-fluid">
             <section class="row detail-status">
-                <p class="col-4 font-weight-bold">Nominee Name</p>
-                <p class="col-8">Deepika Rathore</p>
-            </section>
-            <section class="row detail-status">
                 <p class="col-4 font-weight-bold">Assessment Status</p>
-                <p class="col-8">In Progress</p>
+                <p class="col-8 assessment-status"></p>
             </section>
 
             <section class="row detail-status">
                 <p class="col-4 font-weight-bold">Nominated By</p>
-                <p class="col-8">Self</p>
+                <p class="col-8 nominated-by"></p>
             </section>
             <section class="panel-group">
                 <section class="row detail-status">
                     <p class="col-4 font-weight-bold">Shadow</p>
-                    <p class="col-6">Completed</p>
+                    <p class="col-6 shadow-status"></p>
                     <a class="col-2 collapse-button" role="button" data-toggle="collapse" href="#shadow-details">
                         <i class="more-less fas fa-plus"></i>
                     </a>
 
                 </section>
                 <section id="shadow-details" class="collapse-details collapse">
-                        <header class="col-12 d-inline">
-                            <form action="" id="shadow-form">
-                                <span class="col-4 font-weight-bold">No. of Reverse Shadow Required </span>
-                                <select class="col-2 custom-select" name="shadow-count" id="shadow-count">
-                                    <option selected hidden>--Select--</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </form>
-                        </header>
-                        
-                    </section>
+                    <header class="col-12 d-inline">
+                        <span class="col-4 font-weight-bold">No. of Shadow Required </span>
+                        <span class="col-2 shadow-required"></span>
+                    </header>
+
+                </section>
 
                 <section class="row detail-status">
                     <p class="col-4 font-weight-bold">Reverse Shadow</p>
-                    <p class="col-6">In Progress</p>
+                    <p class="col-6 reverse-shadow-status"></p>
                     <a class="col-2 collapse-button" href="#reverse-shadow-details" data-toggle="collapse" data-parent="#accordion" aria-expanded="false"
                         aria-controls="reverse-shadow-details">
                         <i class="more-less fas fa-plus"></i>
@@ -91,56 +79,68 @@
                 </section>
                 <section id="reverse-shadow-details" class="collapse-details collapse">
                     <header class="col-12 d-inline">
-                        <form action="" id="reverse-shadow-form">
-                            <span class="col-4 font-weight-bold">No. of Reverse Shadow Required </span>
-                            <select class="col-2 custom-select" name="reverse-shadow-count" id="reverse-shadow-count">
-                                <option selected hidden>--Select--</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </form>
+                        <span class="col-4 font-weight-bold">No. of Reverse Shadow Required </span>
+                        <span class="col-2 rev-shadow-required"></span>
                     </header>
-                    
+
                 </section>
             </section>
             <section class="row float-right">
-                <button type="reset" class="btn btn-primary">Reset</button>
-                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-primary nominate-btn">Nominate</button>
             </section>
-            </article>
+        </article>
 
-            <article class="col-12 shadow-details-brief original-item">
-                <section class="col-4">
-                    <form action="" class="shadow-supervisor-form">
-                        <section>
-                            <label for="" class="font-weight-bold">Assigned to</label>
-                            <select class="m-left custom-select"  name="assignee-list">
-                                <option selected hidden>--Select--</option>
-                                <option value="a">a</option>
-                                <option value="b">b</option>
-                                <option value="c">c</option>
-                            </select>
-                        </section>
-                    </form>
+        <article class="col-12 shadow-details-brief original-item">
+            <section class="col-4">
+                <section>
+                    <span class="font-weight-bold">Assigned to</span>
+                    <span class="asignee-name"></span>
                 </section>
-                <section class="col-4">
-                        <section>
-                            <span class="font-weight-bold">Status</span>
-                            <span class="m-left">Not Started</span>
-                        </section>
+            </section>
+            <section class="col-4">
+                <section>
+                    <span class="font-weight-bold">Status</span>
+                    <span class="m-left assigned-status"></span>
                 </section>
-                <section class="col-4">
-                        <section>
-                            <span class="font-weight-bold">Date Completed</span>
-                            <span class="m-left"></span>
-                        </section>
+            </section>
+            <section class="col-4">
+                <section>
+                    <span class="font-weight-bold">Date Completed</span>
+                    <span class="m-left date-completed"></span>
                 </section>
-            </article>
+            </section>
+        </article>
+        <!-- The Modal -->
+        <article class="modal fade" id="myModal">
+            <section class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <header class="modal-header">
+                        <h5 class="modal-title">Congratulations</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </header>
+
+                    <!-- Modal body -->
+                    <main class="modal-body row">
+                        <figure>
+                            <img src="./info-symbol.png" alt="nomination send" width="80px">
+                        </figure>
+                        <p>Your Nomination has been sent to your
+                            <br>supervisor for approval. Please check back later
+                        <br>to view details of assessment.</p>
+                    </main>
+
+                    <!-- Modal footer -->
+                    <footer class="modal-footer">
+                        <button type="button" class="btn btn-default modal-ok-btn" data-dismiss="modal">OK</button>
+                    </footer>
+                </div>
+            </section>
+        </article>
     </main>
-    
-    <script src="./panel.js"></script>
+
+    <script src="./cpanel.bundle.js"></script>
 </body>
 
 </html>
