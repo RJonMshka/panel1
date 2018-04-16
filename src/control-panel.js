@@ -15,17 +15,18 @@ const nominateSelfAction = (data)=>{
 $(function(){
 
     class PanelistStore extends Store {
-        getInitialState(cb) {
-            $.ajax({
+        constructor(dispatcher){
+            super(dispatcher);
+            this.getInitialState().done(res => this.__state = res);
+        }
+
+        // Ajax call to Database (JSON-server  ,yet)
+        getInitialState() {
+            return $.ajax({
                 url:"http://localhost:3003/panelists",
                 method:'get',
                 contentType:"application/json",
-                success: (res)=> {
-                    this.__state = res;
-                    cb(this.__state);
-                }
             });
-
         }
 
         __onDispatch(action){
@@ -46,11 +47,20 @@ $(function(){
                     break;
             }
         }
+
+        getUserData(){
+            return new Promise((resolve,reject) => {
+                if(this.__state) {
+                    resolve(this.__state);
+                }
+            });
+        }
     }
     
     const panelistStore = new PanelistStore(controlPanelDispatcher);
     
     const render = (object)=>{
+        console.log('render function');
 
         $('.collapse-button').on('click',function(e){
             $(e.currentTarget).find('.more-less').toggleClass("fa-plus fa-minus");
@@ -60,13 +70,13 @@ $(function(){
         $('.assessment-status').html(object.status);
         $('.nominated-by').html(object.nominatedBy);
         $('.nominate-btn').hide();
+        $('.collapse-button').hide();
         $('.shadow-status').html(object.shadow.status);
         $('.reverse-shadow-status').html(object.reverseShadow.status);
 
         if(object.state == 0) {
             
-            $('.detail-status').css('opacity',0.6);
-            $('.collapse-button').hide();
+            $('.detail-status').addClass('opacity');
             $('.nominate-btn').show();
         }
 
@@ -83,6 +93,47 @@ $(function(){
             $('#myModal').modal('show');
         });
 
+        if(object.state == 1) {
+
+            $('.detail-status').removeClass('opacity');
+            $('.panel-group').find('.detail-status').addClass('opacity');
+
+        }
+
+        if(object.state == 2 || object.state == 3) {
+
+            $('.detail-status').removeClass('opacity');
+            $('.collapse-button').show();
+            $('.shadow-required').html(object.shadow.numRequired);
+            $('.shadow-status').html(object.shadow.status);
+            $('.rev-shadow-required').html(object.reverseShadow.numRequired);
+            $('reverse-shadow-status').html(object.reverseShadow.status);
+
+            // Appending sections to Drop-Downs
+
+            object.shadow.details.forEach((item) => {
+                let $cloneContainer = $('.original-item').clone();
+                $cloneContainer.removeClass('original-item').addClass('d-inline-flex');
+
+                $cloneContainer.find('.assignee-name').html(item.assignedTo);
+                $cloneContainer.find('.assigned-status').html(item.status);
+                $cloneContainer.find('.date-completed').html(item.dateCompleted);
+
+                $('#shadow-details').find('header').after($cloneContainer);
+            });
+
+            object.reverseShadow.details.forEach((item) => {
+                let $cloneContainer = $('.original-item').clone();
+                $cloneContainer.removeClass('original-item').addClass('d-inline-flex');
+
+                $cloneContainer.find('.assignee-name').html(item.assignedTo);
+                $cloneContainer.find('.assigned-status').html(item.status);
+                $cloneContainer.find('.date-completed').html(item.dateCompleted);
+
+                $('#reverse-shadow-details').find('header').after($cloneContainer);
+            });
+        }
+
     }
     panelistStore.addListener((state)=>{
         console.log('render is performed');
@@ -91,7 +142,7 @@ $(function(){
         render(state);
     });
 
-    panelistStore.getInitialState((data)=>{render(data)});
+    panelistStore.getUserData().then( (data) => render(data) );
 
 });
 
